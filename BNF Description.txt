@@ -1,0 +1,136 @@
+Program
+<program> ::= <statement list> EOF
+
+Truth Values
+<true> 	::= TRUE
+
+<false> ::= FALSE
+	| ''
+
+<truth values> ::= <false>
+	| <true>
+	| <connective expression>
+	| <relation expression>
+
+Constants
+<char> 	::= a | b | c | d | e | f | g | h | i | j | k | l | m | n | o | p | q | r | s | t | u | v | w | x | y | z 
+	| A | B | C | D | E | F | G | H | I | J | K | L | M | N | O | P | Q | R | S | T | U | V | W | X | Y | Z
+
+<string> ::= <char>
+	| <char> <string>
+
+<digit> ::= 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
+
+<integer> ::= <digit>
+	| <digit> <integer>
+
+<constant Identifier> ::= <string>
+
+<constant Name> ::= <string> | <integer>
+
+<constant> ::= <constant Identifier> <constant Name>
+
+Connectives
+<connective expression> ::= <variable> <connective sign> <variable>
+	| <variable> <connective sign> <relation expression>
+	| <relation expression> <connective sign> <variable>
+	| <relation expression> <connective sign> <relation expression>
+
+<connective sign> :== 'and' | 'or' | '->' | '~'
+
+Relations
+<relation> ::= '<'
+	| '>'
+	| '=='
+
+<relation expression> ::= <integer> <relation> <integer>
+
+Variable
+<identifier> ::= <string>
+
+<variable name> ::= <constants>
+
+<variable> ::= <identifier> <variable name>
+
+<label statement> ::= <variable> | <constant>
+
+Predicates
+<lp> ::= '('
+
+<rp> ::= ')'
+
+<lbrace> ::= '{'
+
+<rbrace> ::= '}'
+
+<caller Identifier> ::= <string>
+
+<caller Name> ::= <string>
+
+<caller> ::= <caller Identifier> <caller Name>
+
+<return statement> ::= RETURN
+	| RETURN <lp> <truth values> <rp>
+
+<predicates> ::= <caller> <lp> <rp> 
+	| <caller> <lp> <rp> <lbrace> <statement list> <rbrace>
+
+Predicates Instantiations
+<comma> ::= ','
+
+<parameter> ::= <truth value> | <variable>
+
+<parameter list> ::= <parameter>
+	| <parameter> <comma> <parameter list>
+
+<predicates instantiations> ::= <caller> <lp> <parameter list> <rp> <lbrace> <statement list> <rbrace>
+
+Assignment
+<equal sign> ::= '='
+
+<assignment statement> ::= <variable> <equal sign> <truth values>
+
+Selection
+<expression> ::= <connective expression>
+	| <relation expression>
+	| <variable>
+	| <constant>
+	| <truth values>
+
+<if clause> ::= IF <lp> <expression> <rp> THEN 
+
+<if statement> ::= <if clause> <lbrace> <statement list> <rbrace>
+	| <if clause> <lbrace> <statement list> <rbrace> ELSE <lbrace> <statement list> <rbrace>
+	| <if clause> <lbrace> <statement list> <rbrace> ELSE <if statement>
+
+Looping statements
+<while clause> ::= WHILE <lp> <expression> <rp> 
+
+<while statement> ::= <while clause> <lbrace> <statement lis> <rbrace>
+
+Input Statement
+<input> ::= <truth values>
+
+<input list> ::= <input>
+	| <input> <comma> <input list>
+
+<input statement> ::= INPUT <lp> <input list> <rp>
+
+Output Statement
+<output> ::= <truth values>
+
+<output statement> ::= OUTPUT <lp> <output> <rp>
+
+Statement
+<statement> ::= <truth value>
+	| <if statement>
+	| <while statement>
+	| <assignment statement>
+	| <return statement>
+	| <label statement>
+	| <input statement>
+	| ''
+
+
+<statement list> ::= <statement>
+	| <statement> <statement list>
